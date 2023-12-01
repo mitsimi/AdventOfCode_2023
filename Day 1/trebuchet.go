@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	for i := 0; i < 10; i++ {
+	for i := 0; i < 1; i++ {
 		fmt.Println(Trebuchet("input"))
 	}
 }
@@ -28,15 +28,15 @@ func Trebuchet(path string) int {
 }
 
 var spelledMap = map[string]string{
-	"one":   "1",
-	"two":   "2",
-	"three": "3",
-	"four":  "4",
-	"five":  "5",
-	"six":   "6",
-	"seven": "7",
-	"eight": "8",
-	"nine":  "9",
+	"one":   "o1e",
+	"two":   "t2o",
+	"three": "t3e",
+	"four":  "f4r",
+	"five":  "f5e",
+	"six":   "s6x",
+	"seven": "s7n",
+	"eight": "e8t",
+	"nine":  "n9e",
 }
 
 func sumScan(scanner *bufio.Scanner) int {
@@ -44,9 +44,7 @@ func sumScan(scanner *bufio.Scanner) int {
 	var numArr []int
 	for scanner.Scan() {
 		var line = scanner.Text()
-
 		line = replaceSpelledNumbers(line)
-
 		cache := collectNumbers(line)
 		numArr = append(numArr, constructNumber(cache))
 	}
@@ -67,18 +65,21 @@ func replaceSpelledNumbers(line string) string {
 }
 
 func collectNumbers(str string) []int {
-	var cache []int
+	var numbers []int
+	var cache string
+
 	for _, r := range str {
+		cache = cache + string(r)
 		if unicode.IsDigit(r) {
-			cache = append(cache, getNumber(r))
+			numbers = append(numbers, getNumber(r))
 		}
 	}
-	return cache
+	return numbers
 }
 
 func constructNumber(arr []int) (number int) {
 	if len(arr) == 1 { // one item
-		number = arr[0]*10 + number
+		number = arr[0]*10 + arr[0]
 	} else if len(arr) > 1 { // more than one item
 		number = arr[0]*10 + arr[len(arr)-1]
 	} else { // no item

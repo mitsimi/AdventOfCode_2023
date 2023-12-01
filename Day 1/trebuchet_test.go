@@ -4,6 +4,41 @@ import (
 	"testing"
 )
 
+func TestOverlap(t *testing.T) {
+	var tests = map[string][]int{
+		"two1nine":        {2, 1, 9},
+		"eightwothree":    {8, 2, 3},
+		"abcone2threexyz": {1, 2, 3},
+		"xtwone3four":     {2, 1, 3, 4},
+		"4nineightseven2": {4, 9, 8, 7, 2},
+		"zoneight":        {1, 8},
+		"7pqrstsixteen":   {7, 6},
+		"twoneight":       {2, 1, 8},
+	}
+
+	for s, n := range tests {
+		t.Run(s, func(t *testing.T) {
+			str := replaceSpelledNumbers(s)
+			res := collectNumbers(str)
+			if !equal(n, res) {
+				t.Errorf("Want: %v, Got: %v", n, res)
+			}
+		})
+	}
+}
+
+func equal(a, b []int) bool {
+	if len(a) != len(b) {
+		return false
+	}
+	for i, v := range a {
+		if v != b[i] {
+			return false
+		}
+	}
+	return true
+}
+
 func TestExampleInput(t *testing.T) {
 	var tests = map[string]int{
 		"two1nine":         29,
@@ -11,17 +46,20 @@ func TestExampleInput(t *testing.T) {
 		"abcone2threexyz":  13,
 		"xtwone3four":      24,
 		"4nineeightseven2": 42,
-		"zoneight234":      14,
+		"zoneight":         18,
 		"7pqrstsixteen":    76,
+		"twoneight":        28,
 	}
 
 	for s, n := range tests {
-		newLine := replaceSpelledNumbers(s)
-		numbers := collectNumbers(newLine)
-		con := constructNumber(numbers)
-		if con != n {
-			t.Errorf("Want: %d, Got: %d \n lines: %s vs %s", n, con, s, newLine)
-		}
+		t.Run(s, func(t *testing.T) {
+			newLine := replaceSpelledNumbers(s)
+			numbers := collectNumbers(newLine)
+			con := constructNumber(numbers)
+			if con != n {
+				t.Errorf("Want: %d, Got: %d \n lines: %s vs %s", n, con, s, newLine)
+			}
+		})
 	}
 }
 
