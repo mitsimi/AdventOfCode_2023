@@ -7,6 +7,7 @@ import (
 	"strconv"
 	"strings"
 	"unicode"
+	"util"
 )
 
 func main() {
@@ -17,10 +18,10 @@ func main() {
 
 func Trebuchet(path string) int {
 	file, err := os.Open(path)
-	checkErr(err)
+	util.CheckErr(err)
 	defer func(file *os.File) {
 		err := file.Close()
-		checkErr(err)
+		util.CheckErr(err)
 	}(file)
 
 	scanner := bufio.NewScanner(file)
@@ -97,12 +98,6 @@ func arraySum(arr []int) (sum int) {
 
 func getNumber(r rune) int {
 	number, err := strconv.Atoi(string(r))
-	checkErr(err)
+	util.CheckErr(err)
 	return number
-}
-
-func checkErr(err error) {
-	if err != nil {
-		panic(err)
-	}
 }
