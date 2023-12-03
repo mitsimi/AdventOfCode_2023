@@ -2,6 +2,7 @@ package main
 
 import (
 	"testing"
+	"util"
 )
 
 func TestOverlap(t *testing.T) {
@@ -20,23 +21,11 @@ func TestOverlap(t *testing.T) {
 		t.Run(s, func(t *testing.T) {
 			str := replaceSpelledNumbers(s)
 			res := collectNumbers(str)
-			if !equal(n, res) {
+			if !util.EqualArray(n, res) {
 				t.Errorf("Want: %v, Got: %v", n, res)
 			}
 		})
 	}
-}
-
-func equal(a, b []int) bool {
-	if len(a) != len(b) {
-		return false
-	}
-	for i, v := range a {
-		if v != b[i] {
-			return false
-		}
-	}
-	return true
 }
 
 func TestExampleInput(t *testing.T) {
