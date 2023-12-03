@@ -7,3 +7,7 @@ func Atoi(str string) int {
 	CheckErr(err)
 	return num
 }
+
+func Itoa(i int) string {
+	return strconv.Itoa(i)
+}

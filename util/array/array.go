@@ -1,6 +1,6 @@
-package util
+package array
 
-func EqualArray[C comparable](a, b []C) bool {
+func Equal[C comparable](a, b []C) bool {
 	if len(a) != len(b) {
 		return false
 	}
