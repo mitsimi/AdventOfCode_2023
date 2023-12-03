@@ -16,7 +16,6 @@ func gearSchematic() {
 	path := "input"
 	table = buildArray(util.NewScanner(path))
 	nums := collectNumbers()
-	fmt.Println(nums)
 	fmt.Println(util.Sum(nums))
 }
 
@@ -45,25 +44,11 @@ func collectNumbers() []int {
 	}
 
 	for i, row := range table {
-		var numFrags []rune
-		var symbolFound = false
 		for j, r := range row {
-			if unicode.IsNumber(r) {
-				numFrags = append(numFrags, r)
-				if !symbolFound {
-					symbolFound = lookupTable(i, j)
+			if r == '*' {
+				if ratio := searchNumbers(i, j); ratio > 0 {
+					addToCollection(ratio)
 				}
-			} else {
-				if symbolFound {
-					addToCollection(constructNumber(numFrags))
-					symbolFound = false
-				}
-				numFrags = []rune{}
-			}
-
-			if j == len(row)-1 && symbolFound {
-				addToCollection(constructNumber(numFrags))
-				symbolFound = false
 			}
 		}
 	}
@@ -78,16 +63,19 @@ func constructNumber(arr []rune) int {
 	return num
 }
 
-func lookupTable(row, col int) bool {
-	// We start top right
+func searchNumbers(row, col int) (ratio int) {
+	ratio = 1
+	var found int
+
+	// Starting top right
 	row--
 	col--
 
-	// Set boundaries
+	// Setting boundaries
 	rowBound := row + 3
-	columnBound := col + 3
+	colBound := col + 3
 
-	// Preventing out of bounds with -1
+	// staying in lower bounds
 	if row < 0 {
 		row++
 	}
@@ -95,21 +83,52 @@ func lookupTable(row, col int) bool {
 		col++
 	}
 
-	// Go through radius of 1
+	// Looking for numbers around
 	for i := row; i < rowBound; i++ {
 		if i > len(table)-1 {
 			break
 		}
-		for j := col; j < columnBound; j++ {
+
+		var frags []rune
+		for j := col; j < colBound; j++ {
 			if j > len(table[i])-1 {
 				break
 			}
 
-			char := table[i][j]
-			if !unicode.IsNumber(char) && char != '.' {
-				return true
+			if unicode.IsNumber(table[i][j]) {
+				// Going to the beginning of the Number
+				for ; unicode.IsNumber(table[i][j]); j-- {
+					if j == 0 {
+						break
+					}
+				}
+
+				// Make sure it points to the beginning of the number
+				// If current but next is a number
+				if !unicode.IsNumber(table[i][j]) && unicode.IsNumber(table[i][j+1]) {
+					j++
+				}
+
+				// Reading the number
+				for ; unicode.IsNumber(table[i][j]); j++ {
+					frags = append(frags, table[i][j])
+
+					if j >= len(table[i])-1 {
+						break
+					}
+				}
+
+				ratio *= constructNumber(frags)
+				fmt.Println(string(frags))
+				frags = []rune{}
+				found++
 			}
 		}
 	}
-	return false
+
+	if found == 2 {
+		return ratio
+	} else {
+		return 0
+	}
 }
