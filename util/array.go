@@ -1,8 +1,6 @@
 package util
 
-
-
-func EqualArray(a, b []int) bool {
+func EqualArray[C comparable](a, b []C) bool {
 	if len(a) != len(b) {
 		return false
 	}

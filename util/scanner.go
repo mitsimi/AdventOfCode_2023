@@ -13,7 +13,7 @@ type FileScanner struct {
 func NewScanner(path string) *FileScanner {
 	file, err := os.Open(path)
 	CheckErr(err)
-	
+
 	return &FileScanner{
 		file:    file,
 		scanner: bufio.NewScanner(file),
