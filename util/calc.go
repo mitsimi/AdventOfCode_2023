@@ -13,3 +13,12 @@ func Sum[N Number](nums []N) N {
 	}
 	return sum
 }
+
+func SumFunc[N Number](collection []any, f func(any) N) N {
+	var sum N
+	for _, value := range collection {
+		sum += f(value)
+	}
+
+	return sum
+}
