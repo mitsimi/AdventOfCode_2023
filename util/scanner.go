@@ -5,6 +5,15 @@ import (
 	"os"
 )
 
+func ReadLines(path string) []string {
+	var lines []string
+	sc := NewScanner(path)
+	for sc.Scan() {
+		lines = append(lines, sc.Text())
+	}
+	return lines
+}
+
 type FileScanner struct {
 	file    *os.File
 	scanner *bufio.Scanner
