@@ -66,5 +66,5 @@ func main() {
 		fmt.Printf("Blocks done: %d / %d \n", i+1, len(content[1:]))
 	}
 
-	util.Sout(slices.Min(seeds))
+	fmt.Println(slices.Min(seeds))
 }
