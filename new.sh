@@ -10,6 +10,10 @@ cd $dir
 
 touch main.go
 echo "package main" > main.go
+echo "
+func main() {
+
+}" >> main.go
 touch example
 touch input
 go mod init $dir
