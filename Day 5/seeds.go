@@ -61,7 +61,7 @@ func main() {
 
 		}
 		seeds = new
-		ranges = []Range{}
+		ranges = []Mapping{}
 
 		fmt.Printf("Blocks done: %d / %d \n", i+1, len(content[1:]))
 	}
