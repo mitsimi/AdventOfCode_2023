@@ -35,27 +35,6 @@ func main() {
 		}
 	}
 
-	//for node := range network {
-	//	if !strings.HasSuffix(node, start) {
-	//		continue
-	//	}
-	//	steps := 0
-	//	for !strings.HasSuffix(node, end) {
-	//		next_dir := direction[steps%len(direction)]
-	//		if next_dir == 'L' {
-	//			node = network[node][0]
-	//		} else {
-	//			node = network[node][1]
-	//		}
-	//		steps++
-	//	}
-	//	results = append(results, steps)
-	//}
-	//val := results[0]
-	//for i := 1; i < len(results); i++ {
-	//	val = lcm(val, results[i])
-	//}
-
 	results := []int{}
 	for i := range pos {
 		var steps int = 0
