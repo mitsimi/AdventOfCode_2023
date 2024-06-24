@@ -13,17 +13,17 @@ touch main.go
 echo "package main" > main.go
 echo "
 func main() {
-    file := "input"
-    fmt.Println("Part 1:", part1(file))
-    fmt.Println("Part 2:", part2(file))
+    file := \"input\"
+    fmt.Println(\"Part 1:\", part1(file))
+    fmt.Println(\"Part 2:\", part2(file))
 }
 
 func part1(input string) int {
-	panic("not implemented")
+	panic(\"not implemented\")
 }
 
 func part2(input string) int {
-	panic("not implemented")
+	panic(\"not implemented\")
 }
 " >> main.go
 
