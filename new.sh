@@ -37,25 +37,28 @@ import (
 )
 
 func TestMain(t *testing.T) {
-	tests := []struct {
+tests := []struct {
+		name     string
 		method   func(string) int
 		expected int
 		input    string
 	}{
 		{
+			name:     \"Part 1\",
 			method:   part1,
 			expected: 999,
-			input:    \"example\",
+			input:    "example",
 		},
 		//{
+		//	name:     \"Part 2\",
 		//	method:   part1,
 		//	expected: 999,
-		//	input:    \"example\",
+		//	input:    example,
 		//},
 	}
 
 	for _, test := range tests {
-		t.Run(test.method, func(t *testing.T) {
+		t.Run(test.name, func(t *testing.T) {
 			assert.Equal(t, test.expected, test.method(test.input))
 		})
 	}
