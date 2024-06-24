@@ -1,5 +1,5 @@
 #!/bin/bash
-
+source .env
 echo -n "Please number of the day: "
 read number
 
@@ -15,7 +15,7 @@ func main() {
 
 }" >> main.go
 touch example
-touch input
+curl --cookie "session=$AOC_COOKIE" https://adventofcode.com/2023/day/$number/input > input
 go mod init $dir
 
 cd ..
