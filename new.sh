@@ -32,8 +32,8 @@ touch main_test.go
 echo "package main" > main_test.go
 echo "
 import (
-	"testing"
-	"github.com/stretchr/testify/assert"
+	\"testing\"
+	\"github.com/stretchr/testify/assert\"
 )
 
 func TestMain(t *testing.T) {
