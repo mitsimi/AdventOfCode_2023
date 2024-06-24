@@ -45,12 +45,12 @@ func TestMain(t *testing.T) {
 		{
 			method:   part1,
 			expected: 999,
-			input:    "example",
+			input:    \"example\",
 		},
 		//{
 		//	method:   part1,
 		//	expected: 999,
-		//	input:    "example",
+		//	input:    \"example\",
 		//},
 	}
 
