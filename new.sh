@@ -47,13 +47,13 @@ tests := []struct {
 			name:     \"Part 1\",
 			method:   part1,
 			expected: 999,
-			input:    "example",
+			input:    \"example\",
 		},
 		//{
 		//	name:     \"Part 2\",
 		//	method:   part1,
 		//	expected: 999,
-		//	input:    example,
+		//	input:    \"example\",
 		//},
 	}
 
